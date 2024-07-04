@@ -34,6 +34,7 @@ public class CalcServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Gson gson = new Gson();
+        // TODO: в JSON получаю num-string, нужно преобразовать типы? Почему работает и так?
         Operation operation = gson.fromJson(req.getReader(), Operation.class);
 
         Operation execute = operationService.execute(operation);
@@ -42,7 +43,7 @@ public class CalcServlet extends HttpServlet {
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        
+
         resp.getWriter().write(jsonResponse);
     }
 }
